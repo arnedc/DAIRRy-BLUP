@@ -44,8 +44,8 @@ DAIRRy-BLUP creates 1 or 2 output-files depending on whether a test-dataset is g
 
 # Version history
 
-* Version 0.1
-First public release of DAIRRy-BLUP (12/2013)
+* Version 0.1 (12/2013):
+  1. First public release of DAIRRy-BLUP
 
 # Contact
 
