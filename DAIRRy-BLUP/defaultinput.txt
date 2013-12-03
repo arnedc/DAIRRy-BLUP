@@ -1,0 +1,70 @@
+/Default input file for parreml
+/Comment lines are started with a 'slash', /
+/The order of the parameters are not important, but some are mandatory
+/Absolute paths for filenames may start with a slash '/'
+
+/Number of observations (mandatory)
+#Observations
+100
+
+/Number of SNPs (mandatory)
+#SNPs
+1000
+
+/Filename where we can find the dataset (binary or HDF5) (mandatory)
+#DataFile
+simdata.h5
+
+/Filetype of the dataset file (0 for binary and 1 for HDF5, mandatory)
+#DataFileHDF5
+1
+
+/Number of fixed effects (mandatory)
+#FixedEffects
+1
+
+/Filename of the incidence matrix of the fixed effects (binary, mandatory) 
+#FileFixedEffects
+X100
+
+/Paths in HDF5-file for genotypes and phenotypes (mandatory when HDF5-filetype is selected)
+#PathGeno
+QTL_unres
+
+#PathPheno
+pheno_norm_unres
+
+/If enough memory is available one can store the coefficient matrix during the entire computation
+/This option reduces execution time since the coefficient matrix no longer is set up at the beginning of every iteration
+/(0: don't keep copy; 1: keep copy) (optional, default=0)
+#KeepCopyOfCMatrix
+0
+
+/size of the blocks in which the matrix is distributed (optional, default=64)
+#BlockSize
+64
+
+/start value of variance parameter to be estimated (optional, default=100)
+#Lambda
+100
+
+/convergence criterium (optional, default=0.01)
+#Epsilon
+0.01
+
+/maximum number of iterations (optional, default=20)
+#MaximumIterations
+20
+
+/filename of testset (optional, binary)
+/Only necessary when datafile is not in HDF5 format
+/#TestFile
+/testset.bin
+
+/Path for testset in HDF5-file (optional)
+/#TestPath
+/testset
+
+/number of samples in the testset (mandatory if TestFile or TestPath is given)
+/#TestSamples
+/20
