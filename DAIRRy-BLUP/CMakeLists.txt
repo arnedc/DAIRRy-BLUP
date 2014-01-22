@@ -1,4 +1,4 @@
-project(parreml)
+project(DAIRRy-BLUP)
 
 cmake_minimum_required(VERSION 2.6) 
 
@@ -12,22 +12,22 @@ include(CMakeForceCompiler)
   CMAKE_FORCE_CXX_COMPILER(mpicxx ${CMAKE_CXX_COMPILER_ID})
 
 aux_source_directory(src helpfunctions)
-add_executable(parreml ${helpfunctions} main.cpp)
+add_executable(DAIRRy-BLUP ${helpfunctions} main.cpp)
 
 if(MPI_COMPILE_FLAGS)
-  set_target_properties(parreml PROPERTIES
+  set_target_properties(DAIRRy-BLUP PROPERTIES
     COMPILE_FLAGS "-mpe=mpilog ${MPI_COMPILE_FLAGS}")
 endif()
 
 if(MPI_LINK_FLAGS)
-  set_target_properties(parreml PROPERTIES
+  set_target_properties(DAIRRy-BLUP PROPERTIES
     LINK_FLAGS "-L/opt/intel/mkl/lib/intel64 -L/opt/intel/lib/intel64 ${MPI_LINK_FLAGS}")
 endif()
 
 find_package(BLAS REQUIRED)
 find_package(LAPACK REQUIRED)
 
-target_link_libraries(parreml 
+target_link_libraries(DAIRRy-BLUP 
                       ${LAPACK_LIBRARIES}
                       ${BLAS_LIBRARIES}
                       ${MPI_LIBRARIES}
