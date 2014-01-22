@@ -50,3 +50,5 @@ DAIRRy-BLUP creates 1 or 2 output-files depending on whether a test-dataset is g
 # Contact
 
 Please feel free to contact arne.deconinck[at]ugent.be for any questions or suggestions. 
+
+[![Analytics](https://ga-beacon.appspot.com/UA-29101865-2/DAIRRy-BLUP/page)](https://github.com/igrigorik/ga-beacon)
