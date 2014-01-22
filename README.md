@@ -13,8 +13,8 @@ Genomic datasets used for genomic prediction are constantly growing due to the d
 
 DAIRRy-BLUP relies heavily on the following software packages, which have to be installed prior to installation of DAIRRy-BLUP. These software packages are all open source, except for the vendor-optimized implementations.
 
-1. MPI ([OpenMPI](http://www.open-mpi.org/), [MPICH](http://www.mpich.org/), [IntelMPI]()http://software.intel.com/en-us/intel-mpi-library)
-2. [ScaLAPACK and all its dependencies](http://www.netlib.org/scalapack/) BLAS, BLACS, LAPACK, PBLAS (It is recommended to install a [vendor optimized implementation](http://www.netlib.org/scalapack/faq.html#1.3) )
+1. MPI ([OpenMPI](http://www.open-mpi.org/), [MPICH](http://www.mpich.org/), [IntelMPI](http://software.intel.com/en-us/intel-mpi-library))
+2. [ScaLAPACK](http://www.netlib.org/scalapack/) and all its dependencies BLAS, BLACS, LAPACK, PBLAS (It is recommended to install a [vendor optimized implementation](http://www.netlib.org/scalapack/faq.html#1.3) )
 3. HDF5 (http://www.hdfgroup.org/HDF5/)
 4. CMake (http://www.cmake.org/)
 
