@@ -39,7 +39,7 @@ To launch DAIRRy-BLUP with the default input file using for example 4 processes,
 # Output
 
 DAIRRy-BLUP creates 1 or 2 output-files depending on whether a test-dataset is given in the input file.
-* `solution.txt`: Lists the estimates for the fixed and random effects. First t values are estimates for the t fixed effects. Last s values are estimates of the s SNP effects 
+* `estimates.txt`: Lists the estimates for the fixed and random effects. First t values are estimates for the t fixed effects. Last s values are estimates of the s SNP effects 
 * `EBV.txt`: When a test dataset is provided, breeding values are estimated for the individuals based on the estimated fixed and SNP effects and th egenotypes of the test individuals.
 
 # Version history
