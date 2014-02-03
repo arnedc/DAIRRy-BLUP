@@ -423,11 +423,11 @@ CALC:
 
         pdsyrk_ ( "U","N",&m,&sc,&d_one, zb,&i_one, &i_one,dz, &d_one, mco, &t_plus, &t_plus, dco ); 
 
-        pdgemm_ ( "N","T",&m,&i_one,&sc,&d_one,zb,&i_one, &i_one, dz,yb,&i_one,&i_one,dey,&d_one,ty,&t_plus,&i_one,dey ); 
+        pdgemm_ ( "N","T",&m,&i_one,&sc,&d_one,zb,&i_one, &i_one, dz,yb,&i_one,&i_one,dey,&d_one,ty,&t_plus,&i_one,dy ); 
 
         pdsyrk_ ( "U","N",&t,&sc,&d_one, xb,&i_one, &i_one,dx, &d_one, mco, &i_one, &i_one, dco ); 
 
-        pdgemm_ ( "N","T",&t,&i_one,&sc,&d_one,xb,&i_one, &i_one, dx,yb,&i_one,&i_one,dey,&d_one,ty,&i_one,&i_one,dey ); 
+        pdgemm_ ( "N","T",&t,&i_one,&sc,&d_one,xb,&i_one, &i_one, dx,yb,&i_one,&i_one,dey,&d_one,ty,&i_one,&i_one,dy ); 
 
         pdgemm_ ( "N","T",&t,&m,&sc,&d_one,xb,&i_one, &i_one, dx,zb,&i_one,&i_one,dz,&d_one,mco,&i_one,&t_plus,dco ); 
 
