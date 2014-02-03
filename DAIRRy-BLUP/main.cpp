@@ -134,7 +134,7 @@ int main ( int argc, char **argv ) {
     if ( argc !=2 ) {
         if ( * ( pst+1 ) ==0 && *pst==0 ) {
 
-            printf ( "The correct use of parreml is:\n ./parreml <input_file>\n" );
+            printf ( "The correct use of DAIRRy-BLUP is:\n ./DAIRRy-BLUP <input_file>\n" );
             return -1;
         }
         else
