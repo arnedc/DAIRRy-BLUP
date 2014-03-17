@@ -1,6 +1,6 @@
-/Default input file for parreml
+/Default input file for DAIRRy-BLUP
 /Comment lines are started with a 'slash', /
-/The order of the parameters are not important, but some are mandatory
+/The order of the parameters is not important, but some are mandatory
 /Absolute paths for filenames may start with a slash '/'
 
 /Number of observations (mandatory)
