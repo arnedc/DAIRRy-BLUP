@@ -5,20 +5,20 @@ A Distributed AI-REML Ridge Regression Best Linear Unbiased Prediction framework
 
 This software was developed by Arne De Coninck and can only be used for research purposes.
 
-Genomic datasets used for genomic prediction are constantly growing due to the decreasing costs of genotyping and increasing interest in improving agronomic performance of animals and plants. To be able to deal with those large-scale datasets, a distributed-memory framework was developed based on a message passing interface and a ScaLAPACK library. The complexity of the algorithm is defined by the number of SNPs included in the genomic prediction setting; the number of individuals only has a linear effect on the read-in time. To enhance performance it is advised to compile and execute DAIRRy-BLUP on an MPI-optimized machine.
+Genomic datasets used for genomic prediction are constantly growing due to the decreasing costs of genotyping and increasing interest in improving agronomic performance of animals and plants. To be able to deal with those large-scale datasets, a distributed-memory framework was developed based on a message passing interface and a ScaLAPACK library. The complexity of the algorithm is defined by the number of SNPs included in the genomic prediction setting; the number of individuals only has a linear effect on the read-in time. To enhance performance it is advised to compile and execute DAIRRy-BLUP on an MPI-optimized machine, using vendor-optimized implementations of the ScaLAPACK and BLAS libraries.
 
 #Installation
 
 ## Dependencies
 
-DAIRRy-BLUP relies heavily on the following software packages, which have to be installed prior to installation of DAIRRy-BLUP. These software packages are all open source, except for the vendor-optimized implementations.
+DAIRRy-BLUP relies heavily on the following software packages, which have to be installed prior to installation of DAIRRy-BLUP. These software packages are all open source, except for the vendor-optimized implementations of ScaLAPACK and its dependencies.
 
 1. MPI (OpenMPI, MPICH, IntelMPI)
 2. ScaLAPACK and all its dependencies BLAS, BLACS, LAPACK, PBLAS (It is recommended to install a [vendor optimized implementation](http://www.netlib.org/scalapack/faq.html#1.3) )
 3. HDF5 (http://www.hdfgroup.org/HDF5/)
 4. CMake (http://www.cmake.org/)
 
-Currently, compilation will only work with the Intel MKL libraries installed. When MKL libraries are not available, one must change the MKL libraries in the CMakelists.txt file to the ones which are installed. 
+Currently, compilation will only work with the Intel MKL libraries installed. When MKL libraries are not available, one must delete the MKL libraries in the CMakelists.txt files and add the ScaLAPACK libraires installed to the `target_link_libraries` command. 
 
 ## Step-by-step
 
