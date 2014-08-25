@@ -7,8 +7,8 @@
 #include "shared_var.h"
 #include <shared_var.h>
 #include <limits.h>
-#define MPI_SUCCESS          0     
-#define DLEN_ 		     9	    
+#define MPI_SUCCESS          0
+#define DLEN_ 		     9
 typedef int MPI_Comm;
 
 
@@ -50,16 +50,16 @@ int Csu ( int * DC, double * mc, int * DYT, double * yt, double *rn ) {
     }
 
     pcol= * ( pst+1 );
-    ns= n % ( b * * ( ds+1 ) ) ==0 ?  n / ( b * * ( ds+1 ) ) : ( n / ( b * * ( ds+1 ) ) ) +1; 
-    sc= b * * ( ds+1 ); 
+    ns= n % ( b * * ( ds+1 ) ) ==0 ?  n / ( b * * ( ds+1 ) ) : ( n / ( b * * ( ds+1 ) ) ) +1;
+    sc= b * * ( ds+1 );
     nzb= m%b==0 ? m/b : m/b +1;
     pzb= ( nzb - *pst ) % *ds == 0 ? ( nzb- *pst ) / *ds : ( nzb- *pst ) / *ds +1;
     pzb= pzb <1? 1:pzb;
-    lld_Z=pzb*b;		
-    nxb= t%b==0 ? t/b : t/b +1;	
+    lld_Z=pzb*b;
+    nxb= t%b==0 ? t/b : t/b +1;
     pxb= ( nxb - *pst ) % *ds == 0 ? ( nxb- *pst ) / *ds : ( nxb- *pst ) / *ds +1;
     pxb= pxb <1? 1:pxb;
-    lld_X=pxb*b;			
+    lld_X=pxb*b;
 
     descinit_ ( DZ, &m, &sc, &b, &b, &i_zero, &i_zero, &ICTXT2D, &lld_Z, &info );
     if ( info!=0 ) {
@@ -183,7 +183,7 @@ int Csu ( int * DC, double * mc, int * DYT, double * yt, double *rn ) {
             }
         }
 
-        if ( ( nzb-1 ) % *ds == *pst && m%b !=0 ) { 
+        if ( ( nzb-1 ) % *ds == *pst && m%b !=0 ) {
             if (ni==0) {
                 info=fseek ( fZ, ( long ) ( pcol * b * ( m+1 ) * sizeof ( double ) ),SEEK_SET );
                 if ( info!=0 ) {
@@ -219,7 +219,7 @@ int Csu ( int * DC, double * mc, int * DYT, double * yt, double *rn ) {
                 fread ( zb + i*pzb*b + j*b,sizeof ( double ),m%b,fZ );
             }
         }
-        else {	
+        else {
             if (ni==0) {
                 info=fseek ( fZ, ( long ) ( pcol * b * ( m+1 ) * sizeof ( double ) ),SEEK_SET );
                 if ( info!=0 ) {
@@ -260,7 +260,7 @@ int Csu ( int * DC, double * mc, int * DYT, double * yt, double *rn ) {
                 }
             }
         }
-        
+
         if ( ( nxb-1 ) % *ds == *pst && t%b !=0 ) {
             if (ni==0) {
                 info=fseek ( fX, ( long ) ( pcol * b *  t * sizeof ( double ) ),SEEK_SET );
@@ -329,18 +329,18 @@ int Csu ( int * DC, double * mc, int * DYT, double * yt, double *rn ) {
                 }
             }
         }
-      
+
         blacs_barrier_ ( &ICTXT2D,"A" );
 
-        pdsyrk_ ( "U","N",&m,&sc,&d_one, zb,&i_one, &i_one,DZ, &d_one, mc, &t_plus, &t_plus, DC ); 
+        pdsyrk_ ( "U","N",&m,&sc,&d_one, zb,&i_one, &i_one,DZ, &d_one, mc, &t_plus, &t_plus, DC );
 
-        pdgemm_ ( "N","T",&m,&i_one,&sc,&d_one,zb,&i_one, &i_one, DZ,yb,&i_one,&i_one,DY,&d_one,yt,&t_plus,&i_one,DYT ); 
+        pdgemm_ ( "N","T",&m,&i_one,&sc,&d_one,zb,&i_one, &i_one, DZ,yb,&i_one,&i_one,DY,&d_one,yt,&t_plus,&i_one,DYT );
 
         pdsyrk_ ( "U","N",&t,&sc,&d_one, Xb,&i_one, &i_one,DX, &d_one, mc, &i_one, &i_one, DC );
 
         pdgemm_ ( "N","T",&t,&i_one,&sc,&d_one,Xb,&i_one, &i_one, DX,yb,&i_one,&i_one,DY,&d_one,yt,&i_one,&i_one,DYT );
 
-        pdgemm_ ( "N","T",&t,&m,&sc,&d_one,Xb,&i_one, &i_one, DX,zb,&i_one,&i_one,DZ,&d_one,mc,&i_one,&t_plus,DC ); 
+        pdgemm_ ( "N","T",&t,&m,&sc,&d_one,Xb,&i_one, &i_one, DX,zb,&i_one,&i_one,DZ,&d_one,mc,&i_one,&t_plus,DC );
 
         pdnrm2_ ( &sc,nb,yb,&i_one,&i_one,DY,&i_one );
         *rn += *nb * *nb;
@@ -371,7 +371,7 @@ int Csu ( int * DC, double * mc, int * DYT, double * yt, double *rn ) {
 
 int Cu ( int * DC, double * mc, double du) {
 
-    int i,j, rcu,ccu,nxb;    
+    int i,j, rcu,ccu,nxb;
 
     nxb= t%b==0 ? t/b : t/b +1;
 
@@ -453,8 +453,8 @@ int Asu ( double * mai, int * dai,int * dyt, double * yt, int * dc, double * mc,
     }
 
     pcol= * ( pst+1 );
-    nst= n % ( b * * ( ds+1 ) ) ==0 ?  n / ( b * * ( ds+1 ) ) : ( n / ( b * * ( ds+1 ) ) ) +1; 
-    sc= b * * ( ds+1 ); 
+    nst= n % ( b * * ( ds+1 ) ) ==0 ?  n / ( b * * ( ds+1 ) ) : ( n / ( b * * ( ds+1 ) ) ) +1;
+    sc= b * * ( ds+1 );
     nzb= m%b==0 ? m/b : m/b +1;
     pzb= ( nzb - *pst ) % *ds == 0 ? ( nzb- *pst ) / *ds : ( nzb- *pst ) / *ds +1;
     pzb= pzb <1? 1:pzb;
@@ -574,7 +574,7 @@ int Asu ( double * mai, int * dai,int * dyt, double * yt, int * dc, double * mc,
         }
 
 
-        if ( ( nzb-1 ) % *ds == *pst && m%b !=0 ) { 
+        if ( ( nzb-1 ) % *ds == *pst && m%b !=0 ) {
             if (ni==0) {
                 info=fseek ( fZ, ( long ) ( pcol * b * ( m+1 ) * sizeof ( double ) ),SEEK_SET );
                 if ( info!=0 ) {
@@ -726,18 +726,18 @@ int Asu ( double * mai, int * dai,int * dyt, double * yt, int * dc, double * mc,
         }
         blacs_barrier_ ( &ICTXT2D,"A" );
 
-        pdgemm_ ( "T","N", &i_one, &sc,&m,&l, yt, &t_plus,&i_one,dyt,zb,&i_one,&i_one,dz,&d_zero,zub,&i_one,&i_one,dzu ); 
+        pdgemm_ ( "T","N", &i_one, &sc,&m,&l, yt, &t_plus,&i_one,dyt,zb,&i_one,&i_one,dz,&d_zero,zub,&i_one,&i_one,dzu );
 
         pdgemm_ ( "N","T",&m,&i_one,&sc,&sr,zb,&i_one, &i_one, dz,yb,&i_one,&i_one,dy,&d_one,qr,&t_plus,&i_one,dqr );
 
-        pdgemm_ ( "N","T",&t,&i_one,&sc,&sr,xb,&i_one, &i_one, dx,yb,&i_one,&i_one,dy,&d_one,qr,&i_one,&i_one,dqr ); 
+        pdgemm_ ( "N","T",&t,&i_one,&sc,&sr,xb,&i_one, &i_one, dx,yb,&i_one,&i_one,dy,&d_one,qr,&i_one,&i_one,dqr );
 
-        pdgemm_ ( "N","T",&m,&i_one,&sc,&d_one,zb,&i_one, &i_one, dz,zub,&i_one,&i_one,dzu,&d_one,qr,&t_plus,&i_two,dqr ); 
+        pdgemm_ ( "N","T",&m,&i_one,&sc,&d_one,zb,&i_one, &i_one, dz,zub,&i_one,&i_one,dzu,&d_one,qr,&t_plus,&i_two,dqr );
 
-        pdgemm_ ( "N","T",&t,&i_one,&sc,&d_one,xb,&i_one, &i_one, dx,zub,&i_one,&i_one,dzu,&d_one,qr,&i_one,&i_two,dqr ); 
+        pdgemm_ ( "N","T",&t,&i_one,&sc,&d_one,xb,&i_one, &i_one, dx,zub,&i_one,&i_one,dzu,&d_one,qr,&i_one,&i_two,dqr );
 
         pdnrm2_ ( &sc,nb,yb,&i_one,&i_one,dy,&i_one );
-        *mai += *nb * *nb/sa/sa; 
+        *mai += *nb * *nb/sa/sa;
         pdnrm2_ ( &sc,nb,zub,&i_one,&i_one,dzu,&i_one );
         * ( mai + 3 ) += *nb * *nb;
         pddot_ ( &sc,nb,zub,&i_one,&i_one,dzu,&i_one,yb,&i_one,&i_one,dy,&i_one );
@@ -792,7 +792,7 @@ double CZt ( double *cm, int * dcm ) {
 
     tp=0.0;
 
-    nxb= t%b==0 ? t/b : t/b +1;	
+    nxb= t%b==0 ? t/b : t/b +1;
 
     for ( i=0,rcu=0,ccu=0; i<Cb; ++i, ++ccu, ++rcu ) {
         if ( rcu==*ds )
@@ -845,13 +845,14 @@ double Cld ( double *cm, int * dcm ) {
         if ( ccu==* ( ds+1 ) )
             ccu=0;
         if ( *pst==rcu && * ( pst+1 ) == ccu ) {
-            if ( i< ( Cb -1 ) ) {
-                for ( j=0; j<b; ++j ) {
-                    ldp += 2*log( * ( cm+ ( j + i / * ( ds+1 ) * b ) * lld_C + i / *ds *b +j ));
-                }
-            } else {
+            if ( i== ( Cb -1 ) && Cd %b !=0 ) {
                 for ( j=0; j< (Cd+1) % b; ++j ) {
                     ldp += log(* ( cm+ ( j + i / * ( ds+1 ) * b ) * lld_C + i / *ds *b +j ));
+                }
+
+            } else {
+                for ( j=0; j<b; ++j ) {
+                    ldp += log( * ( cm+ ( j + i / * ( ds+1 ) * b ) * lld_C + i / *ds *b +j ));
                 }
             }
         }
