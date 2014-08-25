@@ -21,7 +21,7 @@ endif()
 
 if(MPI_LINK_FLAGS)
   set_target_properties(DAIRRy-BLUP PROPERTIES
-    LINK_FLAGS "-L/opt/intel/mkl/lib/intel64 -L/opt/intel/lib/intel64 ${MPI_LINK_FLAGS}")
+    LINK_FLAGS "${MPI_LINK_FLAGS}")
 endif()
 
 find_package(BLAS REQUIRED)
