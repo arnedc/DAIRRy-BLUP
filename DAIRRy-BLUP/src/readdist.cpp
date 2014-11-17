@@ -846,7 +846,7 @@ double Cld ( double *cm, int * dcm ) {
             ccu=0;
         if ( *pst==rcu && * ( pst+1 ) == ccu ) {
             if ( i== ( Cb -1 ) && Cd %b !=0 ) {
-                for ( j=0; j< (Cd+1) % b; ++j ) {
+                for ( j=0; j< (Cd) % b; ++j ) {
                     ldp += log(* ( cm+ ( j + i / * ( ds+1 ) * b ) * lld_C + i / *ds *b +j ));
                 }
 
